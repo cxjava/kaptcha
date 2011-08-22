@@ -23,16 +23,16 @@ import com.google.code.kaptcha.Producer;
  * @date 2011-3-10 下午12:47:37
  */
 @Controller
-public class CaptchaImageCreateController {
+public class CaptchaImageCreate1Controller {
 	private Producer captchaProducer = null;
 
 	@Autowired
-	@Resource(name="captchaProducer")
+	@Resource(name="captchaProducer1")
 	public void setCaptchaProducer(Producer captchaProducer) {
 		this.captchaProducer = captchaProducer;
 	}
 
-	@RequestMapping("/checkimage.jpg")
+	@RequestMapping("/checkimage1.jpg")
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// Set to expire far in the past.

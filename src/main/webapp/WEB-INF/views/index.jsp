@@ -10,7 +10,12 @@
 	$(document).ready(function() {
 		/** 验证码点击切换 */
 		$('#code').click(function() {
-			$(this).hide().attr('src', ctx + '/checkimage.jpg?r=' + Math.random()).fadeIn();
+			$('#code').hide().attr('src', ctx + '/checkimage.jpg?r=' + Math.random()).fadeIn();
+			$('#code1').hide().attr('src', ctx + '/checkimage1.jpg?r=' + Math.random()).fadeIn();
+		});
+		$('#code1').click(function() {
+			$('#code').hide().attr('src', ctx + '/checkimage.jpg?r=' + Math.random()).fadeIn();
+			$('#code1').hide().attr('src', ctx + '/checkimage1.jpg?r=' + Math.random()).fadeIn();
 		});
 	});
 </script>
@@ -19,6 +24,11 @@
 	<h1>Hello world</h1>
 
 	<P>The time on the server is ${serverTime}.</P>
-	<img style="margin-left: 15px;" align="middle" src="${ctx}/checkimage.jpg" id="code" />
+	<p>
+		<img src="${ctx}/checkimage.jpg" id="code" />
+	</p>
+	<p>
+		<img src="${ctx}/checkimage1.jpg" id="code1" />
+	</p>
 </body>
 </html>

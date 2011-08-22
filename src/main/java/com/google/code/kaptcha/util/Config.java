@@ -108,6 +108,16 @@ public class Config {
 		String paramValue = this.properties.getProperty(paramName);
 		return this.helper.getColor(paramName, paramValue, Color.BLACK);
 	}
+	/**
+	 * add by cx
+	 * 
+	 * @return
+	 */
+	public Color[] getTextProducerFontColors() {
+		String paramName = Constants.KAPTCHA_TEXTPRODUCER_FONT_COLOR;
+		String paramValue = this.properties.getProperty(paramName);
+		return this.helper.getColors(paramName, paramValue, Color.BLACK);
+	}
 
 	/** */
 	public int getTextProducerCharSpace() {
