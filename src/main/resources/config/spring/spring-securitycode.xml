@@ -11,29 +11,29 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			<bean class="com.google.code.kaptcha.util.Config">
 				<constructor-arg>
 					<props>
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
 						<prop key="kaptcha.word.impl">com.google.code.kaptcha.text.impl.CxWordRenderer</prop>
-						<prop key="kaptcha.textproducer.font.color">blue;red;green;black</prop>
+						<prop key="kaptcha.textproducer.font.color">blue;144,75,139;62,52,62;151,0,140</prop>
 						<!-- <prop key="kaptcha.textproducer.font.color">blue</prop> -->
 						<prop key="kaptcha.noise.color">blue</prop>
 						<prop key="kaptcha.border">no</prop>
 						<prop key="kaptcha.textproducer.char.space">-3</prop>
 						<prop key="kaptcha.textproducer.char.length">5</prop>
-						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseTextProducer</prop>
+<!-- 						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseTextProducer</prop> -->
+						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseText</prop>
 						<prop key="kaptcha.textproducer.font.names">华文彩云,华文行楷,方正舒体,华文隶书,幼圆,华文琥珀</prop>
-
 					</props>
 				</constructor-arg>
 			</bean>
 		</property>
 	</bean>
-	<!-- 验证码 -->
+	<!-- 
 	<bean id="captchaProducer1" class="com.google.code.kaptcha.impl.DefaultKaptcha">
 		<property name="config">
 			<bean class="com.google.code.kaptcha.util.Config">
 				<constructor-arg>
 					<props>
-						<!-- <prop key="kaptcha.word.impl">com.google.code.kaptcha.text.impl.CxWordRenderer</prop>
-						<prop key="kaptcha.textproducer.font.color">blue;red;green;black</prop> -->
+						<prop key="kaptcha.session.key">kaptcha_session-key</prop>
 						<prop key="kaptcha.textproducer.font.color">blue</prop>
 						<prop key="kaptcha.noise.color">blue</prop>
 						<prop key="kaptcha.border">no</prop>
@@ -46,5 +46,5 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 				</constructor-arg>
 			</bean>
 		</property>
-	</bean>
+	</bean> -->
 </beans>

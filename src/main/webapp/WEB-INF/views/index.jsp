@@ -11,11 +11,31 @@
 		/** 验证码点击切换 */
 		$('#code').click(function() {
 			$('#code').hide().attr('src', ctx + '/checkimage.jpg?r=' + Math.random()).fadeIn();
-			$('#code1').hide().attr('src', ctx + '/checkimage1.jpg?r=' + Math.random()).fadeIn();
 		});
-		$('#code1').click(function() {
-			$('#code').hide().attr('src', ctx + '/checkimage.jpg?r=' + Math.random()).fadeIn();
-			$('#code1').hide().attr('src', ctx + '/checkimage1.jpg?r=' + Math.random()).fadeIn();
+
+		// 监听enter键
+		$("body").keydown(function(e) {
+			if (e.keyCode == 13) {
+				$("#click").click();
+			}
+		});
+		$("#click").click(function() {
+			$.ajax({
+				url : ctx + "/check",
+				data : {
+					securityCode : $("#checkcode").val()
+				},
+				type : "POST",
+				dataType : "json",
+				success : function(data) {
+					if (data.status) {
+						// 登录成功
+						alert(data.msg);
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
 		});
 	});
 </script>
@@ -25,10 +45,8 @@
 
 	<P>The time on the server is ${serverTime}.</P>
 	<p>
-		<img src="${ctx}/checkimage.jpg" id="code" />
-	</p>
-	<p>
-		<img src="${ctx}/checkimage1.jpg" id="code1" />
+		<img src="${ctx}/checkimage.jpg" id="code" /><br /> <input type="text" id="checkcode" /><input type="button" value="提交"
+			id="click" />
 	</p>
 </body>
 </html>

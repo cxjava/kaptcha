@@ -1,5 +1,8 @@
 package com.matychen.kaptcha.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.awt.image.BufferedImage;
 
 import javax.annotation.Resource;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.kaptcha.Constants;
@@ -24,6 +28,8 @@ import com.google.code.kaptcha.Producer;
  */
 @Controller
 public class CaptchaImageCreateController {
+	private static final Logger logger = LoggerFactory.getLogger(CaptchaImageCreateController.class);
+
 	private Producer captchaProducer = null;
 
 	@Autowired
@@ -68,6 +74,24 @@ public class CaptchaImageCreateController {
 			out.close();
 		}
 		return null;
+	}
+	
+	@RequestMapping(value = "/check")
+	@ResponseBody
+	public Object handle(HttpServletRequest request) {
+		String code=request.getParameter("securityCode");
+		logger.info("handleRequest1(HttpServletRequest, HttpServletResponse) - String code=" + code);
+
+		String captchaId = (String) request.getSession().getAttribute(
+				Constants.KAPTCHA_SESSION_KEY);
+		logger.info("handleRequest1(HttpServletRequest, HttpServletResponse) - String captchaId=" + captchaId);
+		logger.info("handleRequest1(HttpSe code.equals(captchaId)=" + code.equals(captchaId));
+
+		if (!code.equals(captchaId)) {
+			return new JQReturn(false,"验证码错误！");
+		}else {
+			return new JQReturn(true, "验证码正确！");
+		}
 	}
 
 }

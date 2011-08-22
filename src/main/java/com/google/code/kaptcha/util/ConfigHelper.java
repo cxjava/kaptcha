@@ -34,21 +34,21 @@ public class ConfigHelper {
 		if ("".equals(paramValue) || paramValue == null) {
 			colors = new Color[1];
 			colors[0] = defaultColor;
-		} else if (paramValue.indexOf(",") > 0) {
-			colors = new Color[1];
-			colors[0] = createColorFromCommaSeparatedValues(paramName, paramValue);
 		} else if (paramValue.indexOf(";") > 0) {
 			String[] colorNames = paramValue.split(";");
 			colors = new Color[colorNames.length];
 			for (int i = 0; i < colorNames.length; i++) {
-				if ("".equals(paramValue) || paramValue == null) {
+				if ("".equals(colorNames[i]) || colorNames[i] == null) {
 					colors[i] = defaultColor;
-				} else if (paramValue.indexOf(",") > 0) {
+				} else if (colorNames[i].indexOf(",") > 0) {
 					colors[i] = createColorFromCommaSeparatedValues(paramName, colorNames[i]);
 				} else {
 					colors[i] = createColorFromFieldValue(paramName, colorNames[i]);
 				}
 			}
+		} else if (paramValue.indexOf(",") > 0) {
+			colors = new Color[1];
+			colors[0] = createColorFromCommaSeparatedValues(paramName, paramValue);
 		} else {
 			colors = new Color[1];
 			colors[0] = createColorFromFieldValue(paramName, paramValue);
