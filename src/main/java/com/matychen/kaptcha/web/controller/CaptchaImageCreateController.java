@@ -33,19 +33,17 @@ public class CaptchaImageCreateController {
 	private Producer captchaProducer = null;
 
 	@Autowired
-	@Resource(name="captchaProducer")
+	@Resource(name = "captchaProducer")
 	public void setCaptchaProducer(Producer captchaProducer) {
 		this.captchaProducer = captchaProducer;
 	}
 
 	@RequestMapping("/checkimage.jpg")
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// Set to expire far in the past.
 		response.setDateHeader("Expires", 0);
 		// Set standard HTTP/1.1 no-cache headers.
-		response.setHeader("Cache-Control",
-				"no-store, no-cache, must-revalidate");
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		// Set IE extended HTTP/1.1 no-cache headers (use addHeader).
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		// Set standard HTTP/1.0 no-cache header.
@@ -56,11 +54,9 @@ public class CaptchaImageCreateController {
 
 		// create the text for the image
 		String capText = captchaProducer.createText();
-		logger.info("handleRequest(HttpServletRequest, HttpServletResponse) - String capText=" + capText);
 
 		// store the text in the session
-		request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY,
-				capText);
+		request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
 
 		// create the image with the text
 		BufferedImage bi = captchaProducer.createImage(capText);
@@ -76,21 +72,20 @@ public class CaptchaImageCreateController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/check")
 	@ResponseBody
 	public Object handle(HttpServletRequest request) {
-		String code=request.getParameter("securityCode");
+		String code = request.getParameter("securityCode");
 		logger.info("handleRequest1(HttpServletRequest, HttpServletResponse) - String code=" + code);
 
-		String captchaId = (String) request.getSession().getAttribute(
-				Constants.KAPTCHA_SESSION_KEY);
+		String captchaId = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 		logger.info("handleRequest1(HttpServletRequest, HttpServletResponse) - String captchaId=" + captchaId);
 		logger.info("handleRequest1(HttpSe code.equals(captchaId)=" + code.equals(captchaId));
 
 		if (!code.equals(captchaId)) {
-			return new JQReturn(false,"验证码错误！");
-		}else {
+			return new JQReturn(false, "验证码错误！");
+		} else {
 			return new JQReturn(true, "验证码正确！");
 		}
 	}
