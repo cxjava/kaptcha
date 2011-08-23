@@ -36,7 +36,7 @@ public class WaterRipple extends Configurable implements GimpyEngine
 		rippleFilter.setXWavelength(15);
 		rippleFilter.setYWavelength(5);
 		rippleFilter.setEdgeAction(TransformFilter.NEAREST_NEIGHBOUR);
-
+		//add by cx 改变波纹的大小和强度
 		WaterFilter waterFilter = new WaterFilter();
 		waterFilter.setAmplitude(1.5f);
 		waterFilter.setPhase(10);
