@@ -290,6 +290,7 @@
 					<!-- 用户名和密码 -->
 					<username>admin</username>
 					<password>admin</password>
+					<url>http://localhost:8080/manager</url>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -304,6 +305,7 @@
 					<!-- 跳过单元测试 -->
 					<!-- 命令：mvn -package -Dmaven.test.skip=true -->
 					<skip>true</skip>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
