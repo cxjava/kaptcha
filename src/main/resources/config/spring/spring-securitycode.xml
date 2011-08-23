@@ -18,9 +18,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 						<prop key="kaptcha.noise.color">blue</prop>
 						<prop key="kaptcha.border">no</prop>
 						<prop key="kaptcha.textproducer.char.space">-3</prop>
-						<prop key="kaptcha.textproducer.char.length">5</prop>
-<!-- 						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseTextProducer</prop> -->
-						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseText</prop>
+						<prop key="kaptcha.textproducer.char.length">2</prop>
+						<prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseTextProducer</prop>
+						<!-- <prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.ChineseText</prop> -->
 						<prop key="kaptcha.textproducer.font.names">华文彩云,华文行楷,方正舒体,华文隶书,幼圆,华文琥珀</prop>
 					</props>
 				</constructor-arg>

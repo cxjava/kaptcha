@@ -23,7 +23,7 @@ public class ChineseText extends Configurable implements TextProducer {
 		Random rand = new Random();
 
 		for (int i = 0; i < length; i++) {
-			switch (rand.nextInt(3)) {
+			switch (2) {
 			case 1:
 				firstWord = String.valueOf(chars[rand.nextInt(chars.length)]);
 				break;
