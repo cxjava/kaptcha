@@ -1,0 +1,3 @@
+By default, Kaptcha is very easy to setup and use and the default output produces a captcha that should be fairly hard to bust. The captcha's it produces by default look very similar to the one above. If you would like to change the look of the output, there is several configuration options and the framework is modular so you can write your own morphing code.
+
+@See https://code.google.com/p/kaptcha/
